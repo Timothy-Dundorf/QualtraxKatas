@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeFactors", "PrimeFactors.csproj", "{AF706F8C-D7E7-4990-8667-4939E13BCC49}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeFactors.Test", "..\PrimeFactors.Test\PrimeFactors.Test.csproj", "{B3D0E844-765F-49C5-902F-B8426939B426}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AF706F8C-D7E7-4990-8667-4939E13BCC49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF706F8C-D7E7-4990-8667-4939E13BCC49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF706F8C-D7E7-4990-8667-4939E13BCC49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF706F8C-D7E7-4990-8667-4939E13BCC49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3D0E844-765F-49C5-902F-B8426939B426}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3D0E844-765F-49C5-902F-B8426939B426}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3D0E844-765F-49C5-902F-B8426939B426}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3D0E844-765F-49C5-902F-B8426939B426}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

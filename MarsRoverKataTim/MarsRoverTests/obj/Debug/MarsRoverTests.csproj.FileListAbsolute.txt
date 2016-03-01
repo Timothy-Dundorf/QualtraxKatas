@@ -1,0 +1,16 @@
+C:\Dev\MarsRoverKataTim\MarsRoverTests\bin\Debug\MarsRoverTests.dll
+C:\Dev\MarsRoverKataTim\MarsRoverTests\bin\Debug\MarsRoverTests.pdb
+C:\Dev\MarsRoverKataTim\MarsRoverTests\bin\Debug\MarsRover.dll
+C:\Dev\MarsRoverKataTim\MarsRoverTests\bin\Debug\MarsRover.pdb
+C:\Dev\MarsRoverKataTim\MarsRoverTests\obj\Debug\MarsRoverTests.csprojResolveAssemblyReference.cache
+C:\Dev\MarsRoverKataTim\MarsRoverTests\obj\Debug\MarsRoverTests.dll
+C:\Dev\MarsRoverKataTim\MarsRoverTests\obj\Debug\MarsRoverTests.pdb
+D:\Dev\MarsRoverKataTim\MarsRoverTests\bin\Debug\MarsRoverTests.dll
+D:\Dev\MarsRoverKataTim\MarsRoverTests\bin\Debug\MarsRoverTests.pdb
+D:\Dev\MarsRoverKataTim\MarsRoverTests\bin\Debug\MarsRover.dll
+D:\Dev\MarsRoverKataTim\MarsRoverTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+D:\Dev\MarsRoverKataTim\MarsRoverTests\bin\Debug\MarsRover.pdb
+D:\Dev\MarsRoverKataTim\MarsRoverTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
+D:\Dev\MarsRoverKataTim\MarsRoverTests\obj\Debug\MarsRoverTests.csprojResolveAssemblyReference.cache
+D:\Dev\MarsRoverKataTim\MarsRoverTests\obj\Debug\MarsRoverTests.dll
+D:\Dev\MarsRoverKataTim\MarsRoverTests\obj\Debug\MarsRoverTests.pdb

@@ -1,0 +1,10 @@
+C:\Dev\MarsRoverKataTim\MarsRover\bin\Debug\MarsRover.dll
+C:\Dev\MarsRoverKataTim\MarsRover\bin\Debug\MarsRover.pdb
+C:\Dev\MarsRoverKataTim\MarsRover\obj\Debug\MarsRover.csprojResolveAssemblyReference.cache
+C:\Dev\MarsRoverKataTim\MarsRover\obj\Debug\MarsRover.dll
+C:\Dev\MarsRoverKataTim\MarsRover\obj\Debug\MarsRover.pdb
+D:\Dev\MarsRoverKataTim\MarsRover\obj\Debug\MarsRover.csprojResolveAssemblyReference.cache
+D:\Dev\MarsRoverKataTim\MarsRover\obj\Debug\MarsRover.dll
+D:\Dev\MarsRoverKataTim\MarsRover\obj\Debug\MarsRover.pdb
+D:\Dev\MarsRoverKataTim\MarsRover\bin\Debug\MarsRover.dll
+D:\Dev\MarsRoverKataTim\MarsRover\bin\Debug\MarsRover.pdb

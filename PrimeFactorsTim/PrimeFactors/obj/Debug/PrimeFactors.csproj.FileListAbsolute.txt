@@ -1,0 +1,5 @@
+D:\dev\Interns\Tim\PrimeFactors\bin\Debug\PrimeFactors.dll
+D:\dev\Interns\Tim\PrimeFactors\bin\Debug\PrimeFactors.pdb
+D:\dev\Interns\Tim\PrimeFactors\obj\Debug\PrimeFactors.csprojResolveAssemblyReference.cache
+D:\dev\Interns\Tim\PrimeFactors\obj\Debug\PrimeFactors.dll
+D:\dev\Interns\Tim\PrimeFactors\obj\Debug\PrimeFactors.pdb
