@@ -1,0 +1,4 @@
+D:\dev\Dundorf\Katas\StringCalculatorTim\StringCalculatorTim\bin\Debug\StringCalculator.dll
+D:\dev\Dundorf\Katas\StringCalculatorTim\StringCalculatorTim\bin\Debug\StringCalculator.pdb
+D:\dev\Dundorf\Katas\StringCalculatorTim\StringCalculatorTim\obj\Debug\StringCalculator.dll
+D:\dev\Dundorf\Katas\StringCalculatorTim\StringCalculatorTim\obj\Debug\StringCalculator.pdb

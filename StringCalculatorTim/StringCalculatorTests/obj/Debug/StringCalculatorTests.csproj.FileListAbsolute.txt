@@ -1,0 +1,7 @@
+D:\dev\Dundorf\Katas\StringCalculatorTim\StringCalculatorTests\bin\Debug\StringCalculatorTests.dll
+D:\dev\Dundorf\Katas\StringCalculatorTim\StringCalculatorTests\bin\Debug\StringCalculatorTests.pdb
+D:\dev\Dundorf\Katas\StringCalculatorTim\StringCalculatorTests\obj\Debug\StringCalculatorTests.csprojResolveAssemblyReference.cache
+D:\dev\Dundorf\Katas\StringCalculatorTim\StringCalculatorTests\obj\Debug\StringCalculatorTests.dll
+D:\dev\Dundorf\Katas\StringCalculatorTim\StringCalculatorTests\obj\Debug\StringCalculatorTests.pdb
+D:\dev\Dundorf\Katas\StringCalculatorTim\StringCalculatorTests\bin\Debug\StringCalculator.dll
+D:\dev\Dundorf\Katas\StringCalculatorTim\StringCalculatorTests\bin\Debug\StringCalculator.pdb
