@@ -5,3 +5,12 @@ D:\dev\Dundorf\Katas\StringCalculatorTim\StringCalculatorTests\obj\Debug\StringC
 D:\dev\Dundorf\Katas\StringCalculatorTim\StringCalculatorTests\obj\Debug\StringCalculatorTests.pdb
 D:\dev\Dundorf\Katas\StringCalculatorTim\StringCalculatorTests\bin\Debug\StringCalculator.dll
 D:\dev\Dundorf\Katas\StringCalculatorTim\StringCalculatorTests\bin\Debug\StringCalculator.pdb
+C:\Users\tdundorf\Documents\QualtraxKatas\StringCalculatorTim\StringCalculatorTests\bin\Debug\StringCalculatorTests.dll
+C:\Users\tdundorf\Documents\QualtraxKatas\StringCalculatorTim\StringCalculatorTests\bin\Debug\StringCalculatorTests.pdb
+C:\Users\tdundorf\Documents\QualtraxKatas\StringCalculatorTim\StringCalculatorTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\tdundorf\Documents\QualtraxKatas\StringCalculatorTim\StringCalculatorTests\bin\Debug\StringCalculator.dll
+C:\Users\tdundorf\Documents\QualtraxKatas\StringCalculatorTim\StringCalculatorTests\bin\Debug\StringCalculator.pdb
+C:\Users\tdundorf\Documents\QualtraxKatas\StringCalculatorTim\StringCalculatorTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
+C:\Users\tdundorf\Documents\QualtraxKatas\StringCalculatorTim\StringCalculatorTests\obj\Debug\StringCalculatorTests.csprojResolveAssemblyReference.cache
+C:\Users\tdundorf\Documents\QualtraxKatas\StringCalculatorTim\StringCalculatorTests\obj\Debug\StringCalculatorTests.dll
+C:\Users\tdundorf\Documents\QualtraxKatas\StringCalculatorTim\StringCalculatorTests\obj\Debug\StringCalculatorTests.pdb

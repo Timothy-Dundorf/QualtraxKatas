@@ -2,3 +2,8 @@ D:\dev\Dundorf\Katas\StringCalculatorTim\StringCalculatorTim\bin\Debug\StringCal
 D:\dev\Dundorf\Katas\StringCalculatorTim\StringCalculatorTim\bin\Debug\StringCalculator.pdb
 D:\dev\Dundorf\Katas\StringCalculatorTim\StringCalculatorTim\obj\Debug\StringCalculator.dll
 D:\dev\Dundorf\Katas\StringCalculatorTim\StringCalculatorTim\obj\Debug\StringCalculator.pdb
+C:\Users\tdundorf\Documents\QualtraxKatas\StringCalculatorTim\StringCalculatorTim\bin\Debug\StringCalculator.dll
+C:\Users\tdundorf\Documents\QualtraxKatas\StringCalculatorTim\StringCalculatorTim\bin\Debug\StringCalculator.pdb
+C:\Users\tdundorf\Documents\QualtraxKatas\StringCalculatorTim\StringCalculatorTim\obj\Debug\StringCalculator.csprojResolveAssemblyReference.cache
+C:\Users\tdundorf\Documents\QualtraxKatas\StringCalculatorTim\StringCalculatorTim\obj\Debug\StringCalculator.dll
+C:\Users\tdundorf\Documents\QualtraxKatas\StringCalculatorTim\StringCalculatorTim\obj\Debug\StringCalculator.pdb
