@@ -23,7 +23,13 @@ namespace StringCalculator
             }
             var splitNumbers = stringNumbers.Split(separators);
 
-            return splitNumbers.Sum(o => Convert.ToInt32(o));      
+            var splitNumbersSortedDescending = splitNumbers.OrderByDescending(o => o);
+
+            //var negativeSplitNumbers = splitNumbersSortedDescending()
+            //This function skips over the elements in the sorted descending array while they are gretaer than 1000 and then sums the rest. 
+            var splitNumbersTooLargeRemoved = splitNumbersSortedDescending.SkipWhile(o => Convert.ToInt32(o) > 1000).Sum(o => Convert.ToInt32(o));
+
+            return splitNumbersTooLargeRemoved;     
         }
     }
 }
