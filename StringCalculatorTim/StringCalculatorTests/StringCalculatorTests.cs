@@ -91,5 +91,13 @@ namespace StringCalculatorTests
 
             Assert.AreEqual(1, sum);
         }
+
+        [TestMethod]
+        public void TestDelimiterOfAnyLength()
+        {
+            var sum = calculator.Add("//[***] 1***2***3");
+
+            Assert.AreEqual(6, sum);
+        }
     }
 }

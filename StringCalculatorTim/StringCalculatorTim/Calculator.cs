@@ -17,19 +17,34 @@ namespace StringCalculator
 
             if (stringNumbers[0] == '/')
             {
-                var newSeperator = stringNumbers[2];
-                separators = new char[] { ' ', ',', newSeperator};
-                stringNumbers = stringNumbers.Remove(0, 4);
-            }
-            var splitNumbers = stringNumbers.Split(separators);
+                var endOfDelimiterString = stringNumbers.IndexOf(' ');
+                var newSeperatorString = stringNumbers.Substring(1, endOfDelimiterString - 2);
+                var newSeperatorChar = stringNumbers[2];
+                stringNumbers = stringNumbers.Remove(0, endOfDelimiterString + 1);
 
-            var splitNumbersSortedDescending = splitNumbers.OrderByDescending(o => o);
+                if (newSeperatorString[0].Equals('['))
+                {
+                    newSeperatorString = newSeperatorString.Remove(0, 1);
+                    newSeperatorString = newSeperatorString.Remove(newSeperatorString.Length - 1, 1);
+                    stringNumbers = stringNumbers.Replace(newSeperatorString, ",");
+                }
+                else
+                {
+
+                    separators = new char[] { ' ', ',', newSeperatorChar };
+                }
+                
+
+            }
+            
+            var splitNumbersSortedDescending = stringNumbers.Split(separators).OrderByDescending(o => o);
 
             //var negativeSplitNumbers = splitNumbersSortedDescending()
-            //This function skips over the elements in the sorted descending array while they are gretaer than 1000 and then sums the rest. 
-            var splitNumbersTooLargeRemoved = splitNumbersSortedDescending.SkipWhile(o => Convert.ToInt32(o) > 1000).Sum(o => Convert.ToInt32(o));
+            System.Diagnostics.Debug.WriteLine(splitNumbersSortedDescending);
+            //This function skips over the elements in the sorted descending array while they are greater than 1000 and then sums the rest. 
+            var sumTooLargeRemoved = splitNumbersSortedDescending.SkipWhile(o => Convert.ToInt32(o) > 1000).Sum(o => Convert.ToInt32(o));
 
-            return splitNumbersTooLargeRemoved;     
+            return sumTooLargeRemoved;     
         }
     }
 }
