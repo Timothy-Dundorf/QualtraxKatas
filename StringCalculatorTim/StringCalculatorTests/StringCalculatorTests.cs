@@ -70,6 +70,7 @@ namespace StringCalculatorTests
         [TestMethod]
         public void TestSupportDifferentAndVariedDelimeters()
         {
+            //var testString = String.Format("{0}{1}{2}{1}{3}", 1, Environment.NewLine, 2, 3);
             var sum = calculator.Add("//; 1;2,3 1");
 
             Assert.AreEqual(7, sum);
@@ -78,7 +79,16 @@ namespace StringCalculatorTests
         [TestMethod]
         public void TestNegativeNumbersThrowException()
         {
-            //I don't know how to do exceptions so I will wait to work with Tim Allen. 
+            try
+            {
+                var sum = calculator.Add("//; -1;2,-3 1");
+                Assert.Fail();
+            }
+            catch(Exception ex)
+            {
+                var expectedMessage = "-3, -1";
+                Assert.AreEqual(expectedMessage.ToString(), ex.Message);
+            }
         }
 
         /// <summary>
@@ -96,6 +106,14 @@ namespace StringCalculatorTests
         public void TestDelimiterOfAnyLength()
         {
             var sum = calculator.Add("//[***] 1***2***3");
+
+            Assert.AreEqual(6, sum);
+        }
+
+        [TestMethod]
+        public void TestMultipleDelimitersOfAnyLength()
+        {
+            var sum = calculator.Add("//[*][%] 1*2%3");
 
             Assert.AreEqual(6, sum);
         }
