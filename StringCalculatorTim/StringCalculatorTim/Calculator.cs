@@ -9,6 +9,9 @@ namespace StringCalculator
     public class Calculator
     {
         private String[] defaultSeparators = new String[] { " ", "," };
+        private Int32 maxNumberToBeSummed = 1000;
+        private String userDefinedSeparatorIndicatorStart = "//";
+        private String userDefinedSeparatorIndicatorEnd = " ";
 
         /// <summary>
         /// Adds together a string in a predefined format with string numerals delimited by user defined or default separators. Negatives numerals will throw an
@@ -27,25 +30,24 @@ namespace StringCalculator
 
             String[] newSeparatorArray;
 
-            if (stringNumbers[0] == '/')
+            if (stringNumbers.Contains(userDefinedSeparatorIndicatorStart))
             {
-                var endOfDelimiterString = stringNumbers.IndexOf(' ');
-                var newSeparatorString = stringNumbers.Substring(2, endOfDelimiterString - 2);
-                stringNumbers = stringNumbers.Remove(0, endOfDelimiterString + 1);
+                var endOfDelimiterString = stringNumbers.IndexOf(userDefinedSeparatorIndicatorEnd);
+                var newSeparatorString = stringNumbers.Substring(userDefinedSeparatorIndicatorStart.Length, endOfDelimiterString - 2);
+                stringNumbers = stringNumbers.Remove(0, endOfDelimiterString + userDefinedSeparatorIndicatorEnd.Length);
                 newSeparatorArray = returnAppendedSeparatorStringArray(newSeparatorString, defaultSeparators);
             }
             //Style Question: should this else have braces to match the if?
             else
                 newSeparatorArray = defaultSeparators;
             
-            var splitNumbersSortedDescending = stringNumbers.Split(newSeparatorArray, StringSplitOptions.None).OrderByDescending(o => o);
-            negativeNumberExceptionChecker(splitNumbersSortedDescending);
-            //This function skips over the elements in the sorted descending array while they are greater than 1000 and then sums the rest. 
+            var splitNumbers = stringNumbers.Split(newSeparatorArray, StringSplitOptions.None);
+            negativeNumberExceptionChecker(splitNumbers);
             //TODO remove skip while and hard coded 1000 rule. Replace with where soft coded. Do same for negative rule. Remove the the order by descending.
             // Also figure out why this isn't working. how does skip while really work?
-            var sumTooLargeRemoved = splitNumbersSortedDescending.SkipWhile(o => Convert.ToInt32(o) > 1000).Sum(o => Convert.ToInt32(o));
+            var splitNumbersTooLargeRemoved = splitNumbers.Where(o => Convert.ToInt32(o) <= maxNumberToBeSummed);
 
-            return sumTooLargeRemoved;
+            return splitNumbersTooLargeRemoved.Sum(o => Convert.ToInt32(o));
         }
 
         private String[] returnAppendedSeparatorStringArray(String newSeparatorString, String[] currentSeparators)
@@ -64,7 +66,7 @@ namespace StringCalculator
             }
         }
 
-        private void negativeNumberExceptionChecker(IOrderedEnumerable<string> splitNumbersSortedDescending)
+        private void negativeNumberExceptionChecker(String[] splitNumbersSortedDescending)
         {
 
             var negativeNumberString = splitNumbersSortedDescending.Where(n => Convert.ToInt32(n) < 0);

@@ -109,7 +109,7 @@ namespace StringCalculatorTests
             }
             catch(Exception ex)
             {
-                var expectedMessage = "-3, -1";
+                var expectedMessage = "-1, -3";
                 Assert.AreEqual(expectedMessage.ToString(), ex.Message);
             }
         }
@@ -144,7 +144,7 @@ namespace StringCalculatorTests
         [TestMethod]
         public void TestMultipleVariedAndVariableLengthDelimiters()
         {
-            var sum = calculator.Add("//[$$$][**] 1$$$2**4,2400000");
+            var sum = calculator.Add("//[$$$][**] 1$$$2**4,2400");
 
             Assert.AreEqual(7, sum);
         }
