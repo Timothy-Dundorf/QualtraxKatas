@@ -8,55 +8,56 @@ namespace StringCalculator
 {
     public class Calculator
     {
+        private String[] defaultSeparators = new String[] { " ", "," };
+
         public Int32 Add(String stringNumbers)
         {
             if (String.IsNullOrEmpty(stringNumbers))
                 return 0;
 
-            var separators = new String[] { " ", "," };
-            String[] newSeperatorArray;
-
+            String[] newSeparatorArray;
 
             if (stringNumbers[0] == '/')
             {
                 var endOfDelimiterString = stringNumbers.IndexOf(' ');
-                var newSeperatorString = stringNumbers.Substring(2, endOfDelimiterString - 2);
-                
+                var newSeparatorString = stringNumbers.Substring(2, endOfDelimiterString - 2);
                 stringNumbers = stringNumbers.Remove(0, endOfDelimiterString + 1);
-
-                if (newSeperatorString[0].Equals('['))
-                {
-                    newSeperatorString = newSeperatorString.Trim(new char[] { '[', ']' });
-                    stringNumbers = stringNumbers.Replace(newSeperatorString, ",");
-
-                    if(newSeperatorString.Contains(']'))
-                    {
-                        newSeperatorString = newSeperatorString.Replace("][", ",");
-                        newSeperatorArray = newSeperatorString.Split(',');
-                        separators = separators.Concat(newSeperatorArray).ToArray();
-                    }
-                }
-                else
-                {
-                    var newSeperatorChar = stringNumbers[2];
-                    separators = separators.Concat(new[] { newSeperatorChar.ToString() }).ToArray();
-                }
+                newSeparatorArray = returnAppendedSeparatorStringArray(newSeparatorString, defaultSeparators);
             }
+            //Style Question: should this else have braces to match the if?
+            else
+                newSeparatorArray = defaultSeparators;
             
-            var splitNumbersSortedDescending = stringNumbers.Split(separators, StringSplitOptions.None).OrderByDescending(o => o);
+            var splitNumbersSortedDescending = stringNumbers.Split(newSeparatorArray, StringSplitOptions.None).OrderByDescending(o => o);
 
-            //var negativeNumberString = splitNumbersSortedDescending.Where(n => Convert.ToInt32(n) < 0);
+            var negativeNumberString = splitNumbersSortedDescending.Where(n => Convert.ToInt32(n) < 0);
 
-            //if (!String.IsNullOrWhiteSpace(negativeNumberString.ToString()))
-            //{
-            //    var message = String.Join(", ", negativeNumberString);
-            //    throw new Exception(message);
-            //}
+            if (negativeNumberString.Any())
+            {
+                var message = String.Join(", ", negativeNumberString);
+                throw new Exception(message);
+            }
 
             //This function skips over the elements in the sorted descending array while they are greater than 1000 and then sums the rest. 
             var sumTooLargeRemoved = splitNumbersSortedDescending.SkipWhile(o => Convert.ToInt32(o) > 1000).Sum(o => Convert.ToInt32(o));
 
             return sumTooLargeRemoved;
+        }
+
+        private String[] returnAppendedSeparatorStringArray(String newSeparatorString, String[] currentSeparators)
+        {
+            if (newSeparatorString[0].Equals('['))
+            {
+                newSeparatorString = newSeparatorString.Trim(new char[] { '[', ']' });
+                newSeparatorString = newSeparatorString.Replace("][", ",");
+                var newSeperatorArray = newSeparatorString.Split(',');
+                return currentSeparators.Concat(newSeperatorArray).ToArray();
+            }
+            else
+            {
+
+               return currentSeparators.Concat(new[] { newSeparatorString }).ToArray();
+            }
         }
     }
 }
