@@ -21,7 +21,7 @@ namespace StringCalculator
             {
                 var endOfDelimiterString = stringNumbers.IndexOf(' ');
                 var newSeperatorString = stringNumbers.Substring(2, endOfDelimiterString - 2);
-                var newSeperatorChar = stringNumbers[2];
+                
                 stringNumbers = stringNumbers.Remove(0, endOfDelimiterString + 1);
 
                 if (newSeperatorString[0].Equals('['))
@@ -38,21 +38,21 @@ namespace StringCalculator
                 }
                 else
                 {
+                    var newSeperatorChar = stringNumbers[2];
                     separators = separators.Concat(new[] { newSeperatorChar.ToString() }).ToArray();
                 }
             }
             
             var splitNumbersSortedDescending = stringNumbers.Split(separators, StringSplitOptions.None).OrderByDescending(o => o);
 
-            var negativeNumberString = splitNumbersSortedDescending.Where(n => Convert.ToInt32(n) < 0);
+            //var negativeNumberString = splitNumbersSortedDescending.Where(n => Convert.ToInt32(n) < 0);
 
-            if (!String.IsNullOrEmpty(stringNumbers))
-            {
-                var message = String.Join(", ", negativeNumberString);
-                throw new Exception(message);
-            }
+            //if (!String.IsNullOrWhiteSpace(negativeNumberString.ToString()))
+            //{
+            //    var message = String.Join(", ", negativeNumberString);
+            //    throw new Exception(message);
+            //}
 
-            System.Diagnostics.Debug.WriteLine(splitNumbersSortedDescending);
             //This function skips over the elements in the sorted descending array while they are greater than 1000 and then sums the rest. 
             var sumTooLargeRemoved = splitNumbersSortedDescending.SkipWhile(o => Convert.ToInt32(o) > 1000).Sum(o => Convert.ToInt32(o));
 
