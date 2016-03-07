@@ -31,6 +31,29 @@ namespace StringCalculatorTests
 
             Assert.AreEqual(1, sum);
         }
+        [TestMethod]
+        public void TestAddTwenty()
+        {
+            var sum = calculator.Add("20");
+
+            Assert.AreEqual(20, sum);
+        }
+
+        [TestMethod]
+        public void TestAddFourHundred()
+        {
+            var sum = calculator.Add("400,9,8,17");
+
+            Assert.AreEqual(434, sum);
+        }
+
+        [TestMethod]
+        public void TestAddOneThousand()
+        {
+            var sum = calculator.Add("1000,1,3");
+
+            Assert.AreEqual(1004, sum);
+        }
 
         [TestMethod]
         public void TestAddOneAndTwo()
@@ -70,7 +93,58 @@ namespace StringCalculatorTests
         [TestMethod]
         public void TestSupportDifferentAndVariedDelimeters()
         {
+            //var testString = String.Format("{0}{1}{2}{1}{3}", 1, Environment.NewLine, 2, 3);
             var sum = calculator.Add("//; 1;2,3 1");
+
+            Assert.AreEqual(7, sum);
+        }
+
+        [TestMethod]
+        public void TestNegativeNumbersThrowException()
+        {
+            try
+            {
+                var sum = calculator.Add("//; -1;2,-3 1");
+                Assert.Fail();
+            }
+            catch(Exception ex)
+            {
+                var expectedMessage = "-1, -3";
+                Assert.AreEqual(expectedMessage.ToString(), ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Step 6: Completed by sorting descending the array of split numbers and then skipping while greater than 1000. Then you sum what is left.
+        /// </summary>
+        [TestMethod]
+        public void TestNumbersTooBigIgnored()
+        {
+            var sum = calculator.Add("1,1001");
+
+            Assert.AreEqual(1, sum);
+        }
+
+        [TestMethod]
+        public void TestDelimiterOfAnyLength()
+        {
+            var sum = calculator.Add("//[***] 1***2***3");
+
+            Assert.AreEqual(6, sum);
+        }
+
+        [TestMethod]
+        public void TestMultipleDelimitersOfAnyLength()
+        {
+            var sum = calculator.Add("//[*][%] 1*2%3");
+
+            Assert.AreEqual(6, sum);
+        }
+
+        [TestMethod]
+        public void TestMultipleVariedAndVariableLengthDelimiters()
+        {
+            var sum = calculator.Add("//[$$$][**] 1$$$2**4,2400");
 
             Assert.AreEqual(7, sum);
         }

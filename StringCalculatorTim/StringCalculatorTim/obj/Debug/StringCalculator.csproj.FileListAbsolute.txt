@@ -7,3 +7,8 @@ C:\Users\tdundorf\Documents\QualtraxKatas\StringCalculatorTim\StringCalculatorTi
 C:\Users\tdundorf\Documents\QualtraxKatas\StringCalculatorTim\StringCalculatorTim\obj\Debug\StringCalculator.csprojResolveAssemblyReference.cache
 C:\Users\tdundorf\Documents\QualtraxKatas\StringCalculatorTim\StringCalculatorTim\obj\Debug\StringCalculator.dll
 C:\Users\tdundorf\Documents\QualtraxKatas\StringCalculatorTim\StringCalculatorTim\obj\Debug\StringCalculator.pdb
+C:\Users\Timmy\Documents\GitHub\QualtraxKatas\StringCalculatorTim\StringCalculatorTim\bin\Debug\StringCalculator.dll
+C:\Users\Timmy\Documents\GitHub\QualtraxKatas\StringCalculatorTim\StringCalculatorTim\bin\Debug\StringCalculator.pdb
+C:\Users\Timmy\Documents\GitHub\QualtraxKatas\StringCalculatorTim\StringCalculatorTim\obj\Debug\StringCalculator.csprojResolveAssemblyReference.cache
+C:\Users\Timmy\Documents\GitHub\QualtraxKatas\StringCalculatorTim\StringCalculatorTim\obj\Debug\StringCalculator.dll
+C:\Users\Timmy\Documents\GitHub\QualtraxKatas\StringCalculatorTim\StringCalculatorTim\obj\Debug\StringCalculator.pdb
