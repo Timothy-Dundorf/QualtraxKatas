@@ -17,16 +17,21 @@ namespace StringCalculator
             {
                 if (numerals.Contains(stringNumbers[i]))
                 {
-                    char[] currentNumber = new char[] { '0', '0', '0', '0' };
-                    currentNumber[3] = stringNumbers[i];
+                    char[] currentNumberArray = new char[] { '0', '0', '0', '0' };
+                    currentNumberArray[3] = stringNumbers[i];
+
                     while (((i + 1) < stringNumbers.Length) && numerals.Contains(stringNumbers[++i]))
                     {
-                        currentNumber[0] = currentNumber[1];
-                        currentNumber[1] = currentNumber[2];
-                        currentNumber[2] = currentNumber[3];
-                        currentNumber[3] = stringNumbers[i];
+                        currentNumberArray[0] = currentNumberArray[1];
+                        currentNumberArray[1] = currentNumberArray[2];
+                        currentNumberArray[2] = currentNumberArray[3];
+                        currentNumberArray[3] = stringNumbers[i];
                     }
-                    sum += charArrayToInt32(currentNumber);
+
+                    var currentNumber = charArrayToInt32(currentNumberArray);
+
+                    if (currentNumber < 1001)
+                        sum += currentNumber;
                 }
             }
             return sum;
