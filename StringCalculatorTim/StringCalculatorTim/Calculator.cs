@@ -44,19 +44,14 @@ namespace StringCalculator
                 }
             }
             if (negativeList.Any())
-                throw new Exception(listToString(negativeList));
+            {
+                var message = String.Join(", ", negativeList);
+                throw new Exception(message);
+            }
+
             return sum;
         }
 
-        private string listToString(List<int> intList)
-        {
-            String newString = ""; 
-            foreach (var element in intList)
-            {
-                newString = newString.;
-
-            }
-        }
 
         private Int32 charArrayToInt32(char[] currentNumber)
         {
