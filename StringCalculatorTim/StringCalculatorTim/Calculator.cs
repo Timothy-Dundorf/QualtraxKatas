@@ -8,15 +8,21 @@ namespace StringCalculator
 {
     public class Calculator
     {
+        private Int32 MaxNumeralValue = 1000;
        
         public Int32 Add(String stringNumbers)
         {
             var sum = 0;
             var numerals = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+            var negativeList = new List<Int32>();
             for (int i = 0; i < stringNumbers.Length; i++)
             {
                 if (numerals.Contains(stringNumbers[i]))
                 {
+                    var negativeMultiplier = 1;
+                    if (i > 0 && stringNumbers[i - 1].Equals('-'))
+                        negativeMultiplier = -1;
+                        
                     char[] currentNumberArray = new char[] { '0', '0', '0', '0' };
                     currentNumberArray[3] = stringNumbers[i];
 
@@ -28,13 +34,28 @@ namespace StringCalculator
                         currentNumberArray[3] = stringNumbers[i];
                     }
 
-                    var currentNumber = charArrayToInt32(currentNumberArray);
+                    var currentNumber = negativeMultiplier * charArrayToInt32(currentNumberArray);
+                    if (currentNumber < 0)
+                        negativeList.Add(currentNumber);
 
-                    if (currentNumber < 1001)
+                    else if (currentNumber < MaxNumeralValue + 1)
                         sum += currentNumber;
+                    
                 }
             }
+            if (negativeList.Any())
+                throw new Exception(listToString(negativeList));
             return sum;
+        }
+
+        private string listToString(List<int> intList)
+        {
+            String newString = ""; 
+            foreach (var element in intList)
+            {
+                newString = newString.;
+
+            }
         }
 
         private Int32 charArrayToInt32(char[] currentNumber)
