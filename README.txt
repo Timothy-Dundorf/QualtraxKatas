@@ -1,0 +1,1 @@
+This is a repository to fix my exclusion of a .gitignore file in my previous repo. I am completing coding excercises for training at Qualtrax. I really like it here. 
