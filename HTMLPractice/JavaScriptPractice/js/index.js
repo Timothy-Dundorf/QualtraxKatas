@@ -1,5 +1,8 @@
 function crazyFunction()
 	{
-		console.log("Hello World")
-		alert("World")
+		swal("pretty message");
 	}
+
+	document.getElementById("shazam-button").addEventListener('click', function() {
+		crazyFunction();
+	});
