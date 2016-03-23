@@ -38,10 +38,6 @@
         return arr;
     }
 
-    function absDistance(floorNum, destinationFloorNum)
-    {
-        return Math.abs(destinationFloorNum - floorNum);
-    }
 
     function averageDistanceToTravel(floorNum, direction)
     {
@@ -69,11 +65,11 @@
 
         for (var i = 0; i < elevators.length; i++)
         {
-            window.alert("a1 " + i);
+            //window.alert("a1 " + i);
             if(elevators[i].destinationQueue.length == 0)
             {
                 var distance = Math.abs(floorNum - elevators[i].currentFloor());
-                window.alert("a2 " + distance + " floorNum " + floorNum + " elevator[i].currentFloor[] " + elevators[i].currentFloor());
+                //window.alert("a2 " + distance + " floorNum " + floorNum + " elevator[i].currentFloor[] " + elevators[i].currentFloor());
                 if(currentClosestElevatorNum == currentClosestElevatorNumMagicNumber)
                     currentClosestElevatorNum = i;
                 
@@ -111,27 +107,63 @@
         return currentClosestElevatorNum;
 
     }
+
+    function absDistance(floorNum, destinationFloorNum)
+    {
+        var distance = Math.abs(destinationFloorNum - floorNum);
+        window.alert("absDistance" + distance + "floorNum" + floorNum + "destination Floor " + destinationFloorNum )
+        return distance;
+
+    }
     //ToDo split best Destination Up or Down preference per even or odd elevators
     function getBestDestinationFromIdle(elevatorNum, floorNum)
     {
-        var currentBestDestination = maxFloor * 3;
+        var currentBestDestination = maxFloor + maxFloor + maxFloor;
+        var currentBestDirection = "";
 
-        calledToFloorUpBuffer[elevatorNum].forEach(function(calledToNum)
+        for (var i = 0; i < calledToFloorUpBuffer.length; i++)
         {
+            var calledToNum = calledToFloorUpBuffer[elevatorNum][i];
             if (absDistance(floorNum, currentBestDestination) > absDistance(floorNum, calledToNum))
             {
                 currentBestDestination = calledToNum;
+                currentBestDirection = "up";
             }
-        });
+        }
 
-        calledToFloorDownBuffer[elevatorNum].forEach(function(calledToNum)
+        for (var i = 0; i < calledToFloorDownBuffer[elevatorNum].length; i++)
         {
+            var calledToNum = calledToFloorDownBuffer[elevatorNum][i];            
             if (absDistance(floorNum, currentBestDestination) > absDistance(floorNum, calledToNum))
             {
                 currentBestDestination = calledToNum;
+                currentBestDirection = "down";
             }
-        });
-        window.alert("CurrentBestDestination " + currentBestDestination);
+        }
+        if (currentBestDirection == "up")
+        {
+            window.alert("saf1");
+            calledToFloorUpBuffer[elevatorNum] = calledToFloorUpBuffer[elevatorNum].filter(function(floor)
+                {
+                    return floor != currentBestDestination;
+                });
+            elevators[elevatorNum].goingUpIndicator(true);
+            elevators[elevatorNum].goingDownIndicator(false);
+        }
+        else if (currentBestDirection == "down")
+        {
+            window.alert("saf2");
+            calledToFloorDownBuffer[elevatorNum] = calledToFloorDownBuffer[elevatorNum].filter(function(floor)
+                {
+                    return floor != currentBestDestination;
+                });
+            elevators[elevatorNum].goingDownIndicator(true);
+            elevators[elevatorNum].goingUpIndicator(false);
+        }
+        else
+        {
+            //TODO add magic master buffer grabber
+        }
         return currentBestDestination;
     }
 
@@ -141,29 +173,10 @@
         //for (var i = 0; i < elevators.length; i++)
         elevators.forEach(function(elevator, ind)
         {
-
-             elevator.on("stopped_at_floor", function(floorNum)
+            //TODO Fix the hole due to order of operation. Nothing gets removed from the elevator buffer.
+            elevator.on("stopped_at_floor", function(floorNum)
             {
-                //window.alert("stopped a floor" + floorNum);
-                //TODO Remove all up or down references  to this floor from calledToFloorUpBuffer or calledToFloorDownBuffer respectively.
-                if (elevator.destinationDirection() == "up")
-                {
-                    calledToFloorUpBuffer[ind] = calledToFloorUpBuffer[ind].filter(function(floor)
-                        {
-                            return floor != floorNum;
-                        });
-                }
-                else if (elevator.destinationDirection() == "down")
-                {
-                    calledToFloorDownBuffer[ind] = calledToFloorDownBuffer[ind].filter(function(floor)
-                        {
-                            return floor != floorNum;
-                        });
-                }
-                else
-                {
-                    //TODO add magic master buffer grabber
-                }
+                
             });
 
             elevator.on("floor_button_pressed", function(floorNum)
@@ -180,14 +193,14 @@
                     if(elevator.currentFloor < buttonPressedBuffer[ind][0])
                     {
                         buttonPressedBuffer[ind].sort();
-                        elevator.goingUpIndicator("true");
-                        elevator.goingDownIndicator("false");
+                        elevator.goingUpIndicator(true);
+                        elevator.goingDownIndicator(false);
                     }
                     else
                     {
                         buttonPressedBuffer[ind].reverse();
-                        elevator.goingUpIndicator("false");
-                        elevator.goingDownIndicator("true");
+                        elevator.goingUpIndicator(false);
+                        elevator.goingDownIndicator(true);
                     }
                     elevator.destinationQueue = buttonPressedBuffer[ind];
                     elevator.checkDestinationQueue();
@@ -195,35 +208,43 @@
                 }
                 if (calledToFloorUpBuffer[ind].length != 0 || calledToFloorDownBuffer[ind].length != 0)
                 {
-                    elevator.destinationQueue.push(getBestDestinationFromIdle(ind, elevator.currentFloor()));
+                    
+                    var bestDestinationFromIdleNum = getBestDestinationFromIdle(ind, elevator.currentFloor());
+                    elevator.destinationQueue.push(bestDestinationFromIdleNum);
                     elevator.checkDestinationQueue();
+
+                }
+                else 
+                {
+                    elevator.goingUpIndicator(true);
+                    elevator.goingDownIndicator(true);
                 }
             });
 
 
             elevator.on("passing_floor", function(floorNum, direction)
             {
-                //TODO add stops as passing by floors in calledToFloor*Buffers
+                
                 
             });
 
-            for (i = 0; i <= maxFloor; i++)
+        });
+        floors.forEach(function(floor)
+        {
+            floor.on("up_button_pressed", function()
             {
-                floors[i].on("up_button_pressed", function()
-                {
-                    var choosenElevatorNum = getClosestElevatorNum(this.floorNum());
-                    //window.alert("Up" + choosenElevatorNum)
-                    calledToFloorUpBuffer[choosenElevatorNum].push(this.floorNum());
-
-                });
-                floors[i].on("down_button_pressed", function()
-                {
-                    var choosenElevatorNum = getClosestElevatorNum(this.floorNum());
-                    //window.alert("Down" + choosenElevatorNum)
-
-                    calledToFloorDownBuffer[choosenElevatorNum].push(this.floorNum());
-                });
-            }
+                var choosenElevatorNum = getClosestElevatorNum(floor.floorNum());
+                window.alert("UpChoosenElevator" + choosenElevatorNum);
+                calledToFloorUpBuffer[choosenElevatorNum].push(floor.floorNum());
+                window.alert("UpBuffer" + calledToFloorUpBuffer[choosenElevatorNum][0]);
+            });
+            floor.on("down_button_pressed", function()
+            {
+                var choosenElevatorNum = getClosestElevatorNum(floor.floorNum());
+                window.alert("Down ChoosenElevator" + choosenElevatorNum);
+                calledToFloorDownBuffer[choosenElevatorNum].push(floor.floorNum());
+                window.alert("DownBuffer" + calledToFloorDownBuffer[choosenElevatorNum][0]);
+            });
         });
     },
         // Called every 0.1 seconds
