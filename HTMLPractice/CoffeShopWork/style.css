@@ -1,0 +1,29 @@
+	#login-container
+	{
+		width: 350px;
+		height: 150px; 
+		background-color: magenta;
+		border-color: black; 
+		border-width: 5px;
+		border: solid;
+	}
+	.centered_box
+	{
+		width: 66%;
+		height: 66%;
+		margin: 0 auto;	
+	}
+	
+	.centered_box div 
+	{
+
+		margin: 0 auto;
+		display: block;
+	}
+
+	.label_input_pair input
+	{
+		width: 50%;
+		margin: 0 auto;
+		display: block;
+	}
