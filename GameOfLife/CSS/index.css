@@ -1,0 +1,60 @@
+
+.sidebar
+{
+	height: 90%;
+	width: 20%;
+}
+
+.block
+{
+	display: inline-block;
+	background-color: white;
+	outline-offset: -1px;
+    outline: ridge 1px grey;
+    margin-bottom: -4px;
+}
+
+.alive
+{
+	background-color: green;
+}
+
+#container
+{
+	background-color: white;
+	height: 1000px;
+	width: 1600px;
+	margin: 50px auto 25px auto;
+}
+
+#history-block
+{
+	background-color: brown;
+	display: inline-block;
+	float: left;
+}
+
+#grid
+{
+	background-color: orange;
+	height: 90%;
+	width: 60%;
+	display: inline-block;
+	margin: 0 auto;
+}
+
+#stats
+{
+	background-color: purple;
+	display: inline-block;
+	float: right;
+}
+
+#controls
+{
+	background-color: magenta;
+	height: 10%;
+	width: 70%;
+	margin: 0 auto;
+
+}
