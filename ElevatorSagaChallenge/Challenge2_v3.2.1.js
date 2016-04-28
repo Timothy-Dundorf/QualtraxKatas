@@ -208,7 +208,7 @@
                 else if(direction == "down" && elevator.loadFactor() < optimizedPassengerLoadFactor(ind) && masterDownBuffer.indexOf(floorNum - 1) > -1)
                 {
                     elevator.goToFloor(floorNum - 1, true);
-                    masterDownBuffer = filterArray(masterDownBuffer - 1, floorNum);
+                    masterDownBuffer = filterArray(masterDownBuffer, floorNum - 1);
                 }
                 //else if (elevator.destinationQueue.length = 0 && arrayContains(masterDownBuffer, floorNum) || arrayContains(masterDownBuffer)))
 
@@ -225,7 +225,6 @@
                 
                 if (elevator.goingUpIndicator())
                 {
-                	masterUpBuffer = filterArray(masterUpBuffer, floorNum);
                 	if (elevator.loadFactor() < optimizedPassengerLoadFactor(ind) && masterUpBuffer.indexOf(floorNum - 1) > -1)
                 	{
                 		elevator.goToFloor(floorNum - 1, true);
@@ -235,16 +234,15 @@
                 //TODO Consider what is the best if statement for this.
                 else if (elevator.goingDownIndicator())
                 {
-                	masterDownBuffer = filterArray(masterDownBuffer, floorNum);
                 	if (elevator.loadFactor() < optimizedPassengerLoadFactor(ind) && masterDownBuffer.indexOf(floorNum + 1) > -1)
                 	{
                 		elevator.goToFloor(floorNum + 1, true);
                 		filterArray(masterDownBuffer, floorNum + 1)
                 	}
-                    else if(direction == "down" && elevator.loadFactor() < optimizedPassengerLoadFactor(ind) && masterDownBuffer.indexOf(floorNum - 1) > -1)
+                    else if(elevator.loadFactor() < optimizedPassengerLoadFactor(ind) && masterDownBuffer.indexOf(floorNum - 1) > -1)
                     {
                         elevator.goToFloor(floorNum - 1, true);
-                        masterDownBuffer = filterArray(masterDownBuffer - 1, floorNum);
+                        masterDownBuffer = filterArray(masterDownBuffer, floorNum - 1);
                     }
                 }
 

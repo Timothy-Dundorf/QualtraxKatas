@@ -1,14 +1,19 @@
 
 { 
+    //Version 3.2.2 Designed to determine weight range of individual passengers.
    //Refactor to give precedence to pick drop off floors
     init: function(elevators, floors) 
     {
+
         var minFloor = 0;
         var maxFloor = floors[floors.length - 1].floorNum();
 
         var weightPercent = 2.3;
 
         var buttonPressedBuffer = createArray(elevators.length, 0);
+
+        var elevatorLoadArray = createArray(elevators.length, 0);
+        var elevatorPassengerCount = createArray(elevators.length, 0);
 
         //TODO consider adding an intermediate buffer that prevents value an elevator is traveling to be added to the master buffer.
         var masterUpBuffer = [];
@@ -152,11 +157,9 @@
         {         
             elevator.on("idle", function() 
             {
-                window.alert("idle: " + ind)
                 if(buttonPressedBuffer[ind].length != 0)
 	                {
 	                	sortButtonPressedBufferAndDestinationQueue(ind);
-	                	window.alert("elevator: " + ind + " queue: " + elevator.destinationQueue);
 	                }
                 else if ((masterUpBuffer.length != 0 || masterDownBuffer.length != 0))
                 {
@@ -181,7 +184,9 @@
 
             elevator.on("floor_button_pressed", function(floorNum)
             {
-                //window.alert("floorNum " + floorNum + "pressed on" + ind);
+                var delta = elevator.loadFactor() - elevatorLoadArray[ind];
+                window.alert("Elevator: " + ind + " loadFactor: " + elevator.loadFactor() + " delta: " + delta);
+                elevatorLoadArray[ind] = elevator.loadFactor();
                 buttonPressedBuffer[ind].push(floorNum);
             });
 
@@ -190,7 +195,6 @@
             	 // if(buttonPressedBuffer[ind].length != 0)
 	             //    {
 	             //    	sortButtonPressedBufferAndDestinationQueue(ind);
-	             //    	window.alert("elevator: " + ind + " queue: " + elevator.destinationQueue)
 	             //    }
                 if((elevator.destinationQueue.indexOf(floorNum) != -1) || (buttonPressedBuffer[ind].indexOf(floorNum) != -1))
                 {
@@ -200,7 +204,6 @@
                 //TODO Rewrite to consider elevator size as a factor
                 else if(direction == "up" && elevator.loadFactor() < optimizedPassengerLoadFactor(ind) && masterUpBuffer.indexOf(floorNum) > -1)
                 {
-                	window.alert(elevator + " " +weightPercent)
                    	elevator.goToFloor(floorNum, true);
                    	masterUpBuffer = filterArray(masterUpBuffer, floorNum);
                 }
@@ -208,7 +211,7 @@
                 else if(direction == "down" && elevator.loadFactor() < optimizedPassengerLoadFactor(ind) && masterDownBuffer.indexOf(floorNum - 1) > -1)
                 {
                     elevator.goToFloor(floorNum - 1, true);
-                    masterDownBuffer = filterArray(masterDownBuffer - 1, floorNum);
+                    masterDownBuffer = filterArray(masterDownBuffer, floorNum - 1);
                 }
                 //else if (elevator.destinationQueue.length = 0 && arrayContains(masterDownBuffer, floorNum) || arrayContains(masterDownBuffer)))
 
@@ -225,7 +228,6 @@
                 
                 if (elevator.goingUpIndicator())
                 {
-                	masterUpBuffer = filterArray(masterUpBuffer, floorNum);
                 	if (elevator.loadFactor() < optimizedPassengerLoadFactor(ind) && masterUpBuffer.indexOf(floorNum - 1) > -1)
                 	{
                 		elevator.goToFloor(floorNum - 1, true);
@@ -235,16 +237,15 @@
                 //TODO Consider what is the best if statement for this.
                 else if (elevator.goingDownIndicator())
                 {
-                	masterDownBuffer = filterArray(masterDownBuffer, floorNum);
                 	if (elevator.loadFactor() < optimizedPassengerLoadFactor(ind) && masterDownBuffer.indexOf(floorNum + 1) > -1)
                 	{
                 		elevator.goToFloor(floorNum + 1, true);
                 		filterArray(masterDownBuffer, floorNum + 1)
                 	}
-                    else if(direction == "down" && elevator.loadFactor() < optimizedPassengerLoadFactor(ind) && masterDownBuffer.indexOf(floorNum - 1) > -1)
+                    else if(elevator.loadFactor() < optimizedPassengerLoadFactor(ind) && masterDownBuffer.indexOf(floorNum - 1) > -1)
                     {
                         elevator.goToFloor(floorNum - 1, true);
-                        masterDownBuffer = filterArray(masterDownBuffer - 1, floorNum);
+                        masterDownBuffer = filterArray(masterDownBuffer, floorNum - 1);
                     }
                 }
 
