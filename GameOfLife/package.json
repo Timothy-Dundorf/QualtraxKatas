@@ -1,0 +1,18 @@
+{
+  "name": "gameoflife",
+  "version": "1.0.0",
+  "description": "-Game of Life Core\r \t-Display Grid\r \t-Step Forward\r -Extra Features\r \t- History\r \t- Prefilled game states\r \t- Game Speed\r \t- Game stats\r \t- Edit in the middle \r \t- Undo and Redo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.22",
+    "karma-chrome-launcher": "^0.2.3",
+    "karma-firefox-launcher": "^0.1.7",
+    "karma-jasmine": "^0.3.8"
+  }
+}

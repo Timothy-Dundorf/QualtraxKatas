@@ -7,7 +7,6 @@ var grid =
 }
 
 
-var gridBooleanArray  
 function initializeGrid(count)
 {
 	initializeModelGrid(count);
@@ -17,7 +16,7 @@ function initializeModelGrid(count)
 	{
 		grid.height = count;
 		grid.width = count; 
-		grid.booleanArray = createArray(count, count);
+		grid.booleanArray = createArray(count * count);
 	}
 function initializeScreenGrid(count)
 {
@@ -38,6 +37,15 @@ function initializeScreenGrid(count)
 
 	//document.getElementById("grid");
 	$("#grid").html(gridHTML);
+}
+function booleanGridToScreenGrid(booleanGrid)
+{
+	booleanGrid.forEach(function(isAlive, index){
+		if(isAlive)
+			$("#" + index).addClass("alive");
+		else
+			$("#" + index).removeClass("alive");
+	})
 }
 function toggleBlock(element)
 {
@@ -60,14 +68,11 @@ function toggleColor(element)
 }
 function toggleBooleanArrayFromID(id)
 {
-	var width = grid.width;
-	var x = (id % width) - 1;
-	var y = id / width;
-	if (grid.booleanArray[x, y])
-		grid.booleanArray[x,y] = false;
+	if (grid.booleanArray[id])
+		grid.booleanArray[id] = false;
 	else 
-		grid.booleanArray[x,y]= true; 
-	console.log("Alive" + grid.booleanArray[x, y]);
+		grid.booleanArray[id]= true; 
+	console.log("Alive" + grid.booleanArray[id]);
 
 }
 
@@ -85,8 +90,21 @@ function createArray(length) {
 
 $("#gridRange").on("input change", function() {
 	console.log("a1");
-	initializeGrid($(this).val());
-	
+	initializeGrid(parseInt($(this).val()));
+})
+
+$("#next-button").on("click", function() {
+	//Get all selected squares
+	var nextBooleanArray = grid.booleanArray;
+	$(".alive").each(function(){
+		var id = parseInt($(this).attr('id'));
+		nextBooleanArray[id] = cellLives(id);
+	});
+	booleanGridToScreenGrid(nextBooleanArray);
+	grid.booleanArray = nextBooleanArray;
+	//Iterate through selected squares and apply logic
+
+	//Swap grids 
 })
 
 // Shorthand for $( document ).ready()
@@ -94,3 +112,18 @@ $(function() {
     initializeGrid(25);
 });
 
+function cellLives(id){
+	var width = grid.width;
+
+    var cellsToCheckTest = cellsToCheck(id, width);
+	var cellsAlive = cellsToCheckTest.filter(function(checkedId){return grid.booleanArray[checkedId];});
+
+	if (cellsAlive.length == 3 || (cellsAlive.length == 2 && grid.booleanArray[id]))
+		return true;
+	return false; 
+}
+
+function cellsToCheck(id, width)
+{
+	return [id + 1, id -1, id + width, id + width - 1, id + width + 1, id - width, id - width + 1, id - width - 1];
+}
