@@ -6,6 +6,8 @@ var grid =
   booleanArray: []
 }
 
+var intervalVar;
+var refreshRate = 500;
 
 function initializeGrid(count)
 {
@@ -93,18 +95,28 @@ $("#gridRange").on("input change", function() {
 	initializeGrid(parseInt($(this).val()));
 })
 
-$("#next-button").on("click", function() {
-	//Get all selected squares
-	var nextBooleanArray = grid.booleanArray;
-	$(".alive").each(function(){
-		var id = parseInt($(this).attr('id'));
-		nextBooleanArray[id] = cellLives(id);
-	});
-	booleanGridToScreenGrid(nextBooleanArray);
-	grid.booleanArray = nextBooleanArray;
-	//Iterate through selected squares and apply logic
+$("#play-speed").on("input change", function() {
+	refreshRate = parseInt($(this).val());
+})
 
-	//Swap grids 
+$("#next-button").on("click", function() {
+	next();
+})
+//TODO Finish adding play button functionality.
+$("#play-button").on("click", function() {
+	var element = $(this);
+	if (element.hasClass("stop"))
+	{
+		clearInterval(intervalVar);
+		element.removeClass("stop");
+		element.text("play");
+	}
+	else
+	{
+		intervalVar = setInterval(next, refreshRate);
+		element.addClass("stop");
+		element.text("stop");
+	}
 })
 
 // Shorthand for $( document ).ready()
@@ -113,9 +125,7 @@ $(function() {
 });
 
 function cellLives(id){
-	var width = grid.width;
-
-    var cellsToCheckTest = cellsToCheck(id, width);
+    var cellsToCheckTest = cellsToCheck(id);
 	var cellsAlive = cellsToCheckTest.filter(function(checkedId){return grid.booleanArray[checkedId];});
 
 	if (cellsAlive.length == 3 || (cellsAlive.length == 2 && grid.booleanArray[id]))
@@ -123,7 +133,19 @@ function cellLives(id){
 	return false; 
 }
 
-function cellsToCheck(id, width)
+function cellsToCheck(id)
 {
+	var width = grid.width;
 	return [id + 1, id -1, id + width, id + width - 1, id + width + 1, id - width, id - width + 1, id - width - 1];
+}
+
+function next(){
+	var nextBooleanArray = grid.booleanArray.slice(0);
+	$(".alive").each(function(){
+		var id = parseInt($(this).attr('id'));
+		nextBooleanArray[id] = cellLives(id);
+		cellsToCheck(id).forEach(function(id){nextBooleanArray[id] = cellLives(id);});
+	});
+	booleanGridToScreenGrid(nextBooleanArray);
+	grid.booleanArray = nextBooleanArray;
 }

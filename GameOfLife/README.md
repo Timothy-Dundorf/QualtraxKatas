@@ -10,5 +10,7 @@
 	- Game stats
 	- Edit in the middle 
 	- Undo and Redo
+    - Play button turns into a stop button. 
+    - Slider for playspeed.
 
 - [ ] 
