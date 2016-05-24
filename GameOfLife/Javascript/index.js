@@ -97,6 +97,11 @@ $("#gridRange").on("input change", function() {
 
 $("#play-speed").on("input change", function() {
 	refreshRate = parseInt($(this).val());
+	if ($('#play-button').hasClass("stop"))
+	{
+		clearInterval(intervalVar);
+		intervalVar = setInterval(next, refreshRate);
+	}
 })
 
 $("#next-button").on("click", function() {
@@ -104,7 +109,7 @@ $("#next-button").on("click", function() {
 })
 //TODO Finish adding play button functionality.
 $("#play-button").on("click", function() {
-	var element = $(this);
+	var element = $('#play-button');
 	if (element.hasClass("stop"))
 	{
 		clearInterval(intervalVar);
@@ -148,4 +153,8 @@ function next(){
 	});
 	booleanGridToScreenGrid(nextBooleanArray);
 	grid.booleanArray = nextBooleanArray;
+}
+function togglePlayStop()
+{
+
 }
